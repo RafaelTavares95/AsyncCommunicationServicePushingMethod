@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.ifpb.pos.pushingmethod.channel.notify;
+package com.ifpb.pos.notificador;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -16,8 +16,7 @@ import javax.jws.soap.SOAPBinding;
  */
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-public interface RegisterService {
+public interface RegisterUser {
     @WebMethod
-    String registerMyself(String id);
-    
+    public boolean registerListener(String userId);
 }

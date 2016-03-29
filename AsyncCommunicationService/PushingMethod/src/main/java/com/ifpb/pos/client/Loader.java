@@ -6,12 +6,12 @@
 
 package com.ifpb.pos.client;
 
-import com.ifpb.pos.pushingmethod.channel.notify.NotifyService;
+import com.ifpb.pos.notificator.RegisterUser;
 import com.ifpb.pos.pushingmethod.channel.process.ProcessService;
-import com.ifpb.pos.pushingmethod.channel.notify.RegisterService;
 import com.ifpb.pos.pushingmethod.channel.response.ResponseService;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
@@ -21,9 +21,19 @@ import javax.xml.ws.Service;
  */
 public class Loader {    
     public static void main(String[] args) throws MalformedURLException, InterruptedException {        
-        String token = notifyRegister("c3po");
-        sendMessage(token, "ae carai ");
-        System.out.println(getResponse(token));
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("Informe a sua mensagem:");
+        String msg = in.nextLine();
+        String myToken = "c3po";
+        
+        //envia mensagem
+        sendMessage(myToken, msg);
+        //se registra
+        System.out.println(notifyRegister(myToken));
+        //pega resposta
+        System.out.println(getResponse(myToken));
+        
         /**
          * se registra no notificador (fica com o canal aberto)(s)c-n
          * 
@@ -38,24 +48,19 @@ public class Loader {
          */
     }
     
-    private static String notifyRegister(String id) throws MalformedURLException{
+    /**
+     * 
+     * @param id
+     * @return
+     * @throws MalformedURLException 
+     */
+    private static boolean notifyRegister(String id) throws MalformedURLException{
         URL url=new URL("http://localhost:8009/register?wsdl");
-        QName qName=new QName("http://notify.channel.pushingmethod.pos.ifpb.com/", 
-                "RegisterServiceImplService");
+        QName qName=new QName("http://notificador.pos.ifpb.com/", 
+                "RegisterUser");
         Service service=Service.create(url,qName);
-        RegisterService register=service.getPort(RegisterService.class);
-        
-        return register.registerMyself(id);
-    }
-    
-    private static String listenChannel(String id) throws MalformedURLException{
-        URL url=new URL("http://localhost:8009/notify?wsdl");
-        QName qName=new QName("http://notify.channel.pushingmethod.pos.ifpb.com/", 
-                "NotifyServiceImplService");
-        Service service=Service.create(url,qName);
-        NotifyService register=service.getPort(NotifyService.class);
-        
-        return register.listen(id);
+        RegisterUser registerToNotify = service.getPort(RegisterUser.class);
+        return registerToNotify.registerListener(id);
     }
     
     private static void sendMessage(String token, String msg) throws MalformedURLException{
@@ -73,8 +78,6 @@ public class Loader {
                     "ResponseServiceImplService");
         Service service=Service.create(url,qName);
         ResponseService response = service.getPort(ResponseService.class);
-        while (listenChannel(token).equals("")) {
-        }
         return response.getResponse(token);
     }
 }

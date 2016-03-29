@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.ifpb.pos.pushingmethod.channel.notify;
+package com.ifpb.pos.notificador;
 
 import javax.jws.Oneway;
 import javax.jws.WebMethod;
@@ -20,7 +20,5 @@ import javax.jws.soap.SOAPBinding;
 public interface NotifyService {
     @WebMethod
     @Oneway
-    void notifyClient(String id);
-    @WebMethod
-    String listen(String id);
+    public void sendResponse(String userId);
 }

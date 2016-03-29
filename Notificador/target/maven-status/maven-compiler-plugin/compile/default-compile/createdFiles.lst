@@ -1,0 +1,6 @@
+com\ifpb\pos\notificador\RepositoryNotifications.class
+com\ifpb\pos\notificador\NotifyServiceImpl.class
+com\ifpb\pos\notificador\NotifyPublisher.class
+com\ifpb\pos\notificador\NotifyService.class
+com\ifpb\pos\notificador\RegisterUser.class
+com\ifpb\pos\notificador\RegisterUserImpl.class

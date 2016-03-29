@@ -6,8 +6,8 @@
 
 package com.ifpb.pos.pushingmethod.channel.process;
 
+import com.ifpb.pos.notificator.NotifyService;
 import com.ifpb.pos.pushingmethod.Repository;
-import com.ifpb.pos.pushingmethod.channel.notify.NotifyService;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Timer;
@@ -57,10 +57,10 @@ public class ProcessServiceBackground {
     }
     public static void notifyClient(String id) throws MalformedURLException{
         URL url=new URL("http://localhost:8009/notify?wsdl");
-        QName qName=new QName("http://notify.channel.pushingmethod.pos.ifpb.com/", 
-                "NotifyServiceImplService");
+        QName qName=new QName("http://notificador.pos.ifpb.com/", 
+                "NotifyService");
         Service service=Service.create(url,qName);
         NotifyService notify = service.getPort(NotifyService.class);
-        notify.notifyClient(id);
+        notify.sendResponse(id);
     }
 }

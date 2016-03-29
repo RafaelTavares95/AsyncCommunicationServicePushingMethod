@@ -23,13 +23,12 @@ public class Repository {
     private List<String> clientesRegistrados;
     private Map<String,String> responseRepository;
     private ConcurrentLinkedQueue<String> filaDeRequisicoes;
-    private List<String> clientesForNote;
+
     
     private Repository(){
         this.clientesRegistrados = new ArrayList<>();
         this.responseRepository = new HashMap<>();
         this.filaDeRequisicoes = new ConcurrentLinkedQueue();
-        this.clientesForNote = new ArrayList<>();
     }
     
     public static Repository getInstance(){
@@ -50,9 +49,4 @@ public class Repository {
     public ConcurrentLinkedQueue getFilaDeRequisicoes() {
         return filaDeRequisicoes;
     }
-
-    public List<String> getClientesForNote() {
-        return clientesForNote;
-    }
-    
 }
