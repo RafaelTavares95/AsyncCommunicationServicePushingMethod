@@ -1,0 +1,13 @@
+com\ifpb\pos\pushingmethod\channel\response\ResponseServiceImpl.class
+com\ifpb\pos\pushingmethod\channel\process\ProcessServiceBackground.class
+com\ifpb\pos\pushingmethod\channel\process\ProcessService.class
+com\ifpb\pos\pushingmethod\channel\process\ProcessServiceImpl.class
+com\ifpb\pos\pushingmethod\channel\notify\RegisterService.class
+com\ifpb\pos\pushingmethod\channel\process\ProcessServiceBackground$1.class
+com\ifpb\pos\pushingmethod\channel\notify\NotifyServiceImpl.class
+com\ifpb\pos\pushingmethod\Repository.class
+com\ifpb\pos\client\Loader.class
+com\ifpb\pos\pushingmethod\channel\notify\NotifyService.class
+com\ifpb\pos\pushingmethod\channel\notify\RegisterServiceImpl.class
+com\ifpb\pos\pushingmethod\channel\response\ResponseService.class
+com\ifpb\pos\pushingmethod\ProviderPublisher.class
